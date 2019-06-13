@@ -3,7 +3,7 @@
   <span class="side-nav-item-icon">
     <i class="fas" [ngClass]="item.iconName"></i>
   </span>
-  <span class="side-nav-item-name">{{item.displayName}}</span>
+  <span class="side-nav-item-name" *ngIf="sideNavExpanded">{{item.displayName}}</span>
 
   <!-- <span fxFlex></span>
   <div class="arrow" *ngIf="!item.children && item.route ? router.isActive(item.route, true): false">
@@ -17,7 +17,12 @@
   </span> -->
 </a>
 <div *ngIf="expanded">
-  <app-side-nav-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
+  <app-side-nav-list-item *ngFor="let child of item.children"
+    [isExpanded]="sideNavExpanded"
+    [item]="child"
+    [depth]="depth+1"
+    (itemClicked)="onItemSelected($event)"
+  >
   </app-side-nav-list-item>
 </div>
 

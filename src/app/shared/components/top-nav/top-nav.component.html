@@ -1,3 +1,4 @@
 <div class="top-nav-container">
-  
+    <i class="fas fa-bars white fs-24" *ngIf="!isExpanded" (click)="toogleSideNav()"></i>
+    <i class="fas fa-times white fs-24" *ngIf="isExpanded" (click)="toogleSideNav()"></i>
 </div>

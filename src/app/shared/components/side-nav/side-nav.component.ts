@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,9 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
   @Input() navItems;
+  @Input() isExpanded: Boolean = false;
+  @Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onItemClicked(route) {
+    this.itemClicked.emit(route);
   }
 
 }

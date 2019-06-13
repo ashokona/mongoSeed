@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavService } from './shared/services/nav.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angualrSeed';
+  isExpanded: Boolean = true;
 
+  constructor(
+    private navService: NavService
+  ) { }
+  onToogleSideNav(v) {
+    this.isExpanded = v;
+  }
+
+  onItemClicked(route) {
+    console.log(route);
+  }
   navItems: any[] = [
     {
       displayName: 'DevFestFL',
@@ -20,12 +32,12 @@ export class AppComponent {
             {
               displayName: 'Michael Prentice',
               iconName: 'fa-camera',
-              route: 'michael-prentice',
+              route: 'test',
               children: [
                 {
                   displayName: 'Create Enterprise UIs',
                   iconName: 'fa-camera',
-                  route: 'material-design'
+                  route: 'test'
                 }
               ]
             },
@@ -347,4 +359,5 @@ export class AppComponent {
       ]
     }
   ];
+
 }

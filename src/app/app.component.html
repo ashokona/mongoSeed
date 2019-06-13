@@ -1,10 +1,15 @@
 <div>
-  <app-top-nav></app-top-nav>
-  <app-side-nav [navItems]="navItems"></app-side-nav>
-  <div>
-    <h1>I'm conten and I should adjust</h1>
-    <!-- <span style="font-size: 3em; color: Tomato;">
-      <i class="fas fa-camera"></i>
-    </span> -->
+  <app-top-nav [isSideNavExpanded]="isExpanded" (toggleSideNav)="onToogleSideNav($event)"></app-top-nav>
+  <div class="main-container">
+    <div>
+      <app-side-nav [navItems]="navItems" [isExpanded]="isExpanded" (itemClicked)="onItemClicked($event)"></app-side-nav>
+    </div>
+    <div class="side-nav-content">
+      <h1>I'm conten and I should adjust</h1>
+      <!-- <span style="font-size: 3em; color: Tomato;">
+        <i class="fas fa-camera"></i>
+      </span> -->
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
