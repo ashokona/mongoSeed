@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-side-nav',
@@ -10,11 +10,18 @@ export class SideNavComponent implements OnInit {
   @Input() isExpanded: Boolean = false;
   @Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
   @Output() toggle: EventEmitter<any> = new EventEmitter<any>();
+  @Output() widthChange: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('sideNavContainer') sideNavContainerRef: ElementRef;
 
-  constructor() { }
+  constructor(
+    private el: ElementRef
+  ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    // this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
   }
+
+  ngOnInit() { }
 
   onItemClicked(route) {
     this.itemClicked.emit(route);
@@ -22,6 +29,14 @@ export class SideNavComponent implements OnInit {
 
   onToggle(value) {
     this.toggle.emit(value);
+    this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
   }
 
+  ngAfterViewInit() {
+    this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
+  }
+
+  // ngAfterViewChecked() {
+  //   this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
+  // }
 }

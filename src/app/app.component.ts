@@ -9,7 +9,7 @@ import { NavService } from './shared/services/nav.service';
 export class AppComponent {
   title = 'angualrSeed';
   isExpanded: Boolean = true;
-
+  sideNavWidth = '100px';
   constructor(
     private navService: NavService
   ) { }
@@ -22,7 +22,13 @@ export class AppComponent {
   }
 
   onToggleSideNav(value) {
-    this.isExpanded = value
+    this.isExpanded = value;
+  }
+
+  onWidthChange(width) {
+    console.log(width);
+    // this.sideNavWidth = width;
+    this.sideNavWidth = `${width}px`;
   }
   navItems: any[] = [
     {
