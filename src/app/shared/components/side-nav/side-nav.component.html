@@ -1,3 +1,3 @@
 <div class="side-nav-container">
-  <app-side-nav-list-item *ngFor="let item of navItems" [item]="item" [isExpanded]="isExpanded" (itemClicked)="onItemClicked($event)"></app-side-nav-list-item>
+  <app-side-nav-list-item *ngFor="let item of navItems" [item]="item" [isExpanded]="isExpanded" (itemClicked)="onItemClicked($event)" (toggle)="onToggle($event)"></app-side-nav-list-item>
 </div>

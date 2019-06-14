@@ -13,14 +13,56 @@ export class AppComponent {
   constructor(
     private navService: NavService
   ) { }
-  onToogleSideNav(v) {
-    this.isExpanded = v;
+  onToogleSideNav(value) {
+    this.isExpanded = value;
   }
 
   onItemClicked(route) {
     console.log(route);
   }
+
+  onToggleSideNav(value) {
+    this.isExpanded = value
+  }
   navItems: any[] = [
+    {
+      displayName: 'Nav Item 1',
+      iconName: 'fa-camera',
+      route: '1',
+      children: [
+        {
+          displayName: 'Nav Item 1 L1',
+          iconName: 'fa-camera',
+          route: 'l1',
+          children: [
+            {
+              displayName: 'Nav Item 1 L2',
+              iconName: 'fa-camera',
+              route: '1/l1/test'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      displayName: 'Nav Item 2',
+      iconName: 'fa-camera',
+      children: [
+        {
+          displayName: 'Nav Item 2 L1',
+          iconName: 'fa-camera',
+          children: [
+            {
+              displayName: 'Nav Item 2 L2',
+              iconName: 'fa-camera',
+              route: '2/l2/test'
+            }
+          ]
+        }
+      ]
+    },
+  ]
+  navItems1: any[] = [
     {
       displayName: 'DevFestFL',
       iconName: 'fa-camera',

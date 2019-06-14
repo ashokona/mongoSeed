@@ -1,5 +1,5 @@
 <a [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)" class="side-nav-item"
-  [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
+  [ngClass]="{'active': item.route ? this.router.url.includes(item?.route): false, 'expanded': expanded}">
   <span class="side-nav-item-icon">
     <i class="fas" [ngClass]="item.iconName"></i>
   </span>

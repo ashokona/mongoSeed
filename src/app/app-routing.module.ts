@@ -7,8 +7,8 @@ const routes: Routes = [
   // { path: 'auth', loadChildren: './authentication/authentication.module#AuthenticationModule', canActivate: [NoAuthGuardService] },
   // { path: '', loadChildren: './home/home.module#HomeModule' },
   // { path: '**', redirectTo: '' , pathMatch: 'full'},
-  { path: 'test', component: TestComponent },
-  { path: 'test1', component: Test1Component }
+  { path: '1/l1/test', component: TestComponent },
+  { path: '2/l2/test1', component: Test1Component }
 ];
 
 

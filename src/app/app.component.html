@@ -2,7 +2,7 @@
   <app-top-nav [isSideNavExpanded]="isExpanded" (toggleSideNav)="onToogleSideNav($event)"></app-top-nav>
   <div class="main-container">
     <div>
-      <app-side-nav [navItems]="navItems" [isExpanded]="isExpanded" (itemClicked)="onItemClicked($event)"></app-side-nav>
+      <app-side-nav [navItems]="navItems" [isExpanded]="isExpanded" (itemClicked)="onItemClicked($event)" (toggle)="onToggleSideNav($event)"></app-side-nav>
     </div>
     <div class="side-nav-content">
       <h1>I'm conten and I should adjust</h1>

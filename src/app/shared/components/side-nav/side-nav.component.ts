@@ -9,6 +9,7 @@ export class SideNavComponent implements OnInit {
   @Input() navItems;
   @Input() isExpanded: Boolean = false;
   @Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Output() toggle: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -17,6 +18,10 @@ export class SideNavComponent implements OnInit {
 
   onItemClicked(route) {
     this.itemClicked.emit(route);
+  }
+
+  onToggle(value) {
+    this.toggle.emit(value);
   }
 
 }
