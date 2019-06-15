@@ -17,10 +17,6 @@ export class SideNavComponent implements OnInit {
     private el: ElementRef
   ) { }
 
-  ngOnChanges() {
-    // this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
-  }
-
   ngOnInit() { }
 
   onItemClicked(route) {
@@ -29,14 +25,9 @@ export class SideNavComponent implements OnInit {
 
   onToggle(value) {
     this.toggle.emit(value);
-    this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
   }
 
-  ngAfterViewInit() {
-    this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
+  ngAfterViewChecked() {
+    // console.log(this.sideNavContainerRef.nativeElement.offsetWidth);
   }
-
-  // ngAfterViewChecked() {
-  //   this.widthChange.emit(this.sideNavContainerRef.nativeElement.offsetWidth);
-  // }
 }

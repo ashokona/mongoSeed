@@ -39,13 +39,14 @@ export class SideNavListItemComponent {
 
   onItemSelected(item: any) {
     if (!item.children || !item.children.length) {
-      // this.itemClicked.emit(item.route)
+      // this.itemClicked.emit('item.route');
       this.router.navigate([item.route]);
       // this.navService.closeNav();
     }
     if (item.children && item.children.length) {
       this.expanded = !this.expanded;
       // this.sideNavExpanded = true;
+      this.itemClicked.emit('item.route');
       this.toggle.emit(true);
       // this.navService.toggleSideNav(true);
     }

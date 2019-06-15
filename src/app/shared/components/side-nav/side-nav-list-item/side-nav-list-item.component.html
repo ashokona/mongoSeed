@@ -16,7 +16,7 @@
     <i class="fas fa-sort-down"></i>
   </span> -->
 </a>
-<div *ngIf="expanded">
+<div *ngIf="expanded && sideNavExpanded">
   <app-side-nav-list-item *ngFor="let child of item.children"
     [isExpanded]="sideNavExpanded"
     [item]="child"

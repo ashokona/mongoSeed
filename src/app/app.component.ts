@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
 import { NavService } from './shared/services/nav.service';
 
+const sideNavMinWidth = 50;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,64 +10,93 @@ import { NavService } from './shared/services/nav.service';
 export class AppComponent {
   title = 'angualrSeed';
   isExpanded: Boolean = true;
-  sideNavWidth = '100px';
-  constructor(
-    private navService: NavService
-  ) { }
-  onToogleSideNav(value) {
-    this.isExpanded = value;
-  }
+  sideNavWidth = 50;
+  prvSideNavWidth;
+  @ViewChild('sideNavContainer') sideNavContainerRef: any;
 
-  onItemClicked(route) {
-    console.log(route);
-  }
+  constructor(
+    private navService: NavService,
+    private cdr: ChangeDetectorRef,
+    private _ngZone: NgZone
+  ) { }
 
   onToggleSideNav(value) {
     this.isExpanded = value;
+    // this.prvSideNavWidth = null;
+    // console.log(this.sideNavContainerRef.sideNavContainerRef.nativeElement.offsetWidth);
+  }
+  onItemClicked(route) {
+    const currentSideNavWidth = this.sideNavContainerRef.sideNavContainerRef.nativeElement.offsetWidth
+    console.log(currentSideNavWidth);
+    console.log(this.prvSideNavWidth);
+    if(this.prvSideNavWidth && this.prvSideNavWidth !== currentSideNavWidth) {
+      // this.sideNavWidth = this.prvSideNavWidth;
+      this.prvSideNavWidth = this.prvSideNavWidth
+    }
+    else {
+      this.prvSideNavWidth = currentSideNavWidth;
+    // this.sideNavWidth = currentSideNavWidth;
+    }
+    // this.prvSideNavWidth = currentSideNavWidth;
+    // this.sideNavWidth = `${this.sideNavContainerRef.sideNavContainerRef.nativeElement.offsetWidth}px`; 
+    console.log('onItemclick called');
+  }
+  ngAfterViewInit() {
+    // console.log(this.sideNavContainerRef.sideNavContainerRef.nativeElement.offsetWidth);
+  }
+  ngAfterViewChecked() {
+    // console.log(currentSideNavWidth);
+    console.log(this.prvSideNavWidth);
+    // console.log(this.sideNavContainerRef.sideNavContainerRef.nativeElement.offsetWidth);
+    const currentSideNavWidth = this.sideNavContainerRef.sideNavContainerRef.nativeElement.offsetWidth
+    if(!this.isExpanded){
+      this.sideNavWidth = sideNavMinWidth
+    } else if(this.prvSideNavWidth && this.prvSideNavWidth !==  currentSideNavWidth) {
+      this.sideNavWidth = this.prvSideNavWidth; 
+    }else {
+      this.sideNavWidth = currentSideNavWidth;
+    }
+    this.cdr.detectChanges();
+    console.log('view ch  ');
   }
 
-  onWidthChange(width) {
-    console.log(width);
-    // this.sideNavWidth = width;
-    this.sideNavWidth = `${width}px`;
-  }
   navItems: any[] = [
     {
-      displayName: 'Nav Item 1',
-      iconName: 'fa-camera',
-      route: '1',
+      displayName: 'Home',
+      iconName: 'fa-home',
+      route: 'home'
+    },
+    {
+      displayName: 'Security',
+      iconName: 'fa-shield-alt',
+      route: 'security',
       children: [
         {
-          displayName: 'Nav Item 1 L1',
-          iconName: 'fa-camera',
-          route: 'l1',
-          children: [
-            {
-              displayName: 'Nav Item 1 L2',
-              iconName: 'fa-camera',
-              route: '1/l1/test'
-            }
-          ]
+          displayName: 'passwords',
+          iconName: 'fa-lock',
+          route: 'security/test',
         }
       ]
     },
     {
-      displayName: 'Nav Item 2',
-      iconName: 'fa-camera',
+      displayName: 'Cost',
+      iconName: 'fa-dollar-sign',
+      route: 'cost',
       children: [
         {
-          displayName: 'Nav Item 2 L1',
-          iconName: 'fa-camera',
+          displayName: 'spends',
+          iconName: 'fa-money-check-alt',
+          route: 'spends',
           children: [
             {
-              displayName: 'Nav Item 2 L2',
-              iconName: 'fa-camera',
-              route: '2/l2/test'
+              displayName: 'savings',
+              iconName: 'fa-wallet',
+              route: 'cost/spends/test'
             }
           ]
         }
       ]
-    },
+    }
   ]
   navItems1: any[] = [
     {
